@@ -1,7 +1,11 @@
 const express = require("express");
-const recipeRouter = express.Router();
-// const db = require("./db/client");
+const router = express.Router();
+const recipeController = require("../controllers/recipeController");
 
-// modularise later
+// get all recipes + author table
+router.get("/", recipeController.getAll);
 
-module.exports = recipeRouter;
+// get details for single recipe
+router.get("/:id", recipeController.getSingle);
+
+module.exports = router;

@@ -1,17 +1,15 @@
 const db = require("../db/client");
 
-const recipeController = {
+const technoController = {
   getAll: (req, res) => {
-    db.query(
-      "SELECT * FROM recipe INNER JOIN author ON recipe.author_id = author.id"
-    )
+    db.query("SELECT * FROM technology")
       .then((data) => res.json(data.rows))
       .catch((err) => console.log(err));
   },
-  getSingle: (req, res) => {
+  getForSingle: (req, res) => {
     const { id } = req.params;
     db.query(
-      "SELECT * FROM recipe INNER JOIN author ON recipe.author_id = author.id WHERE recipe.id = $1",
+      "SELECT name AS techno_name FROM recipe_technology INNER JOIN technology ON recipe_technology.technology_id = technology.id WHERE recipe_id = $1",
       [id]
     )
       .then((data) => res.json(data.rows))
@@ -19,4 +17,4 @@ const recipeController = {
   },
 };
 
-module.exports = recipeController;
+module.exports = technoController;

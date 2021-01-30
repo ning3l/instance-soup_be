@@ -4,7 +4,7 @@ function buildSearch(params) {
   let spiceCondition = "";
   let spiceVal = "";
 
-  // check for technologies
+  // check for number of selected technologies
   if (typeof params.techno_name === "string") {
     technoConditions.push("name =");
     technoVals.push(params.techno_name);
@@ -16,17 +16,13 @@ function buildSearch(params) {
     }
   }
 
-  // check for spiciness
+  // check for spiciness being additionally selected
   if (typeof params.spiciness !== "undefined") {
-    if (!params.techno_name) {
-      spiceCondition += "spiciness = $1";
-    } else {
-      spiceCondition += "spiciness = $1 AND";
-    }
+    spiceCondition += "spiciness = $1 AND ";
     spiceVal = params.spiciness;
   }
 
-  // format both conditions so they include necessary placeholders
+  // format conditions so they include necessary placeholders
   let formattedTechnoConditions;
   if (spiceCondition && technoConditions.length) {
     formattedTechnoConditions = technoConditions.map(
@@ -38,6 +34,7 @@ function buildSearch(params) {
     );
   }
 
+  // return obj with condition strings and vals
   return {
     technoSearch: !formattedTechnoConditions
       ? ""
@@ -50,5 +47,4 @@ function buildSearch(params) {
   };
 }
 
-let query = buildSearch({ techno_name: ["css", "html"], spiciness: "hot" });
-console.log(query.technoSearch);
+module.exports = buildSearch;
