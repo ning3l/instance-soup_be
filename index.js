@@ -8,7 +8,7 @@ const filterRouter = require("./routes/filter");
 
 app.use(bodyParser.json());
 app.use("/recipes", recipeRouter);
-app.use("/technology", technoRouter);
+app.use("/technologies", technoRouter);
 app.use("/filter", filterRouter);
 
 // handle bad routes

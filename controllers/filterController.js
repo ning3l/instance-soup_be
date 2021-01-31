@@ -4,6 +4,8 @@ const buildSearch = require("../utils/queryBuilder");
 const filterController = {
   query: (req, res) => {
     const { techno_name, spiciness } = req.query;
+    // check that query string is not empty
+    if (!spiciness && !techno_name) return;
     // if no techno_name is present, do a simple db query based only on spiciness
     if (spiciness && !techno_name) {
       db.query(
