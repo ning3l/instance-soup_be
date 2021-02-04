@@ -11,9 +11,9 @@ app.use("/recipes", recipeRouter);
 app.use("/technologies", technoRouter);
 app.use("/filter", filterRouter);
 
-// handle bad routes
+// send README on bad routes so user sees available endpoints
 app.use((req, res) => {
-  res.send("404 NOT FOUND");
+  res.sendFile(__dirname + "/README.md");
 });
 
 const PORT = process.env.PORT || 3000;

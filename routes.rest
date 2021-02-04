@@ -1,7 +1,41 @@
 GET http://localhost:3000/recipes HTTP/1.1
 
 ###
-GET http://localhost:3000/recipes/3 HTTP/1.1
+POST http://localhost:3000/recipes HTTP/1.1
+content-type: application/json
+
+{
+    "author_id": "3",
+    "title": "new test",
+    "abstract": "test test",
+    "date_created": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "spiciness": "hot",
+    "description": "this is a test",
+    "main_text": "this is a test",
+    "code_snippet": "this is a test",
+    "img_url": "1"
+}
+
+###
+GET http://localhost:3000/recipes/5 HTTP/1.1
+
+### ONLY DELETE PREVIOUSLY ADDED TEST ITEMS !
+DELETE  http://localhost:3000/recipes/11 HTTP/1.1
+
+### 
+PUT http://localhost:3000/recipes/13 HTTP/1.1
+
+{
+    "author_id": "2",
+    "title": "updated test",
+    "abstract": "test test",
+    "date_created": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "spiciness": "hot",
+    "description": "this is a test",
+    "main_text": "this is a test",
+    "code_snippet": "this is a test",
+    "img_url": "1"
+}
 
 ###
 GET http://localhost:3000/technologies HTTP/1.1
@@ -11,3 +45,5 @@ GET http://localhost:3000/technologies/3 HTTP/1.1
 
 ###
 GET http://localhost:3000/filter?spiciness=hot&techno_name=css HTTP/1.1
+
+

@@ -4,15 +4,16 @@
 
 Insta(nce) soup is a different take on a classic code project, the creation of a recipe repository with detail views for each entry.
 Here, the "recipes" are comprised of little code challenges, each categorized by their spiciness (difficulty level) and the technologies used to solve them.
-Apart from serving all recipies/technologies back to the client, it is also possible to get a pre-filtered response based on query strings.
+Apart from serving all recipes/technologies back to the client, it is also possible to get a pre-filtered response based on query strings.
 
 ## Technologies
 
 - ES6
 - Node
 - Express
+- PostgreSQL
 
-## Database (ElephantSQL)
+## Database
 
 #### author
 
@@ -43,7 +44,10 @@ Apart from serving all recipies/technologies back to the client, it is also poss
 | Endpoint                      | Routes                        |
 | ----------------------------- | :---------------------------- |
 | GET (all recipes)             | /recipes                      |
+| POST (create recipe)          | /recipes/                     |
 | GET (single recipe by id)     | /recipes/:id                  |
+| PUT (update recipe)           | /recipes/:id                  |
+| DELETE (recipe)               | /recipes/:id                  |
 | GET (all technologies)        | /technologies                 |
 | GET (single technology by id) | /technologies/:id             |
 | GET (filter recipes)          | /filter/?name=""&spiciness="" |
