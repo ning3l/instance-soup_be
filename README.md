@@ -6,6 +6,8 @@ Insta(nce) soup is a different take on a classic code project, the creation of a
 Here, the "recipes" are comprised of little code challenges, each categorized by their spiciness (difficulty level) and the technologies used to solve them.
 Apart from serving all recipes/technologies back to the client, it is also possible to get a pre-filtered response based on query strings.
 
+[ᐅ deployed version](https://instance-soup.herokuapp.com/)
+
 ## Technologies
 
 - ES6
@@ -41,13 +43,13 @@ Apart from serving all recipes/technologies back to the client, it is also possi
 
 ## Features
 
-| Endpoint                      | Routes                        |
-| ----------------------------- | :---------------------------- |
-| GET (all recipes)             | /recipes                      |
-| POST (create recipe)          | /recipes/                     |
-| GET (single recipe by id)     | /recipes/:id                  |
-| PUT (update recipe)           | /recipes/:id                  |
-| DELETE (recipe)               | /recipes/:id                  |
-| GET (all technologies)        | /technologies                 |
-| GET (single technology by id) | /technologies/:id             |
-| GET (filter recipes)          | /filter/?name=""&spiciness="" |
+| Endpoint                      | Routes                              |
+| ----------------------------- | :---------------------------------- |
+| GET (all recipes)             | /recipes                            |
+| POST (create recipe)          | /recipes/                           |
+| GET (single recipe by id)     | /recipes/:id                        |
+| PUT (update recipe)           | /recipes/:id (private)              |
+| DELETE (recipe)               | /recipes/:id (private)              |
+| GET (all technologies)        | /technologies                       |
+| GET (single technology by id) | /technologies/:id                   |
+| GET (filter recipes)          | /filter?spiciness=""&techno_name="" |

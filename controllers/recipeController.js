@@ -48,6 +48,10 @@ const recipeController = {
       .catch((err) => console.log(err));
   },
   deleteRecipe: (req, res) => {
+    let pw = req.header("Authorization");
+    if (!pw || pw !== process.env.PW) {
+      return res.sendStatus(401);
+    }
     const { id } = req.params;
     db.query(
       "WITH first_query AS (DELETE FROM recipe_technology WHERE recipe_id = $1) DELETE FROM recipe WHERE id = $1 RETURNING *;",
@@ -57,6 +61,10 @@ const recipeController = {
       .catch((err) => console.log(err));
   },
   updateRecipe: (req, res) => {
+    let pw = req.header("Authorization");
+    if (!pw || pw !== process.env.PW) {
+      return res.sendStatus(401);
+    }
     const { id } = req.params;
     const {
       author_id,
