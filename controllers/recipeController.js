@@ -31,8 +31,7 @@ const recipeController = {
       technologies,
     } = req.body;
     db.query(
-      //"INSERT INTO recipe (author_id, title, abstract, date_created, spiciness, description, main_text, code_snippet, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
-      `WITH query_one(newid) AS (INSERT INTO recipe (author_id, title, abstract, date_created, spiciness, description, main_text, code_snippet, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id)INSERT INTO recipe_technology(recipe_id, technology_id) SELECT newid, x FROM query_one, unnest(ARRAY[1,2,3]) t(x)`,
+      `WITH query_one(newid) AS (INSERT INTO recipe (author_id, title, abstract, date_created, spiciness, description, main_text, code_snippet, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id)INSERT INTO recipe_technology(recipe_id, technology_id) SELECT newid, x FROM query_one, unnest(ARRAY[${technologies}]) t(x) RETURNING *`,
       [
         author_id,
         title,
@@ -50,7 +49,10 @@ const recipeController = {
   },
   deleteRecipe: (req, res) => {
     const { id } = req.params;
-    db.query("DELETE FROM recipe WHERE id=$1 RETURNING *", [id])
+    db.query(
+      "WITH first_query AS (DELETE FROM recipe_technology WHERE recipe_id = $1) DELETE FROM recipe WHERE id = $1 RETURNING *;",
+      [id]
+    )
       .then((data) => res.json(data.rows))
       .catch((err) => console.log(err));
   },
