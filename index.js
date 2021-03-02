@@ -1,10 +1,13 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const recipeRouter = require("./routes/recipes");
 const technoRouter = require("./routes/technologies");
 const filterRouter = require("./routes/filter");
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use("/recipes", recipeRouter);
